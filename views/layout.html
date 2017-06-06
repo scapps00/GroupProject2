@@ -21,6 +21,7 @@ lock.on("authenticated", function(authResult) {
     localStorage.setItem('accessToken', authResult.accessToken);
     localStorage.setItem('profile', JSON.stringify(profile));
     alert("Yay!");
+    console.log(localStorage.getItem("accessToken"));
   });
 });
 
