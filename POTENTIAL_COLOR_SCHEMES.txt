@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Color Schemes Project 2</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <style>
+    #BOX11{	width 50px, border:30px; padding:5%;  background-color:  #505160;}
+    #BOX12{	width 50px,	border: 30px; padding:5%; background-color:  #68829E;}
+    #BOX13{	width 50px,	border: 30px; padding:5%; background-color:  #AEBD38;}
+    #BOX14{	width 50px,	border: 30px; padding:5%; background-color:  #598234;}
+    #BOX21{	width 50px,	border: 30px; padding:5%; background-color:  #2E4600;}
+    #BOX22{	width 50px,	border: 30px; padding:5%; background-color:  #486B00;}
+    #BOX23{	width 50px,	border: 30px; padding:5%; background-color:  #A2C523;}
+    #BOX24{	width 50px,	border: 30px; padding:5%; background-color:  #7D4427;}
+    #BOX31{	width 50px,	border: 30px; padding:5%; background-color:  #021C1E;}
+    #BOX32{	width 50px,	border: 30px; padding:5%; background-color:  #004445;}
+    #BOX33{	width 50px,	border: 30px; padding:5%; background-color:  #2C7873;}
+    #BOX34{	width 50px,	border: 30px; padding:5%; background-color:  #6FB98F;}
+    #BOX41{	width 50px,	border: 30px; padding:5%; background-color:  #0F1B07;}
+    #BOX42{	width 50px,	border: 30px; padding:5%; background-color:  #FFFF;}
+    #BOX43{	width 50px,	border: 30px; padding:5%; background-color:  #5C821A;}
+    #BOX44{	width 50px,	border: 30px; padding:5%; background-color:  #C6D166;}
+
+    </style>
+
+
+</head>
+
+<body>
+<div class="container">
+<h4>COLOR SCHEME 1</h4>
+<div class="row">
+<br>
+  <div class="col-md-3">
+  	<div id="BOX11">#505160</div>
+  </div>
+  <div class="col-md-3">
+  	<div id="BOX12">#68829E</div>
+  </div>
+  <div class="col-md-3">
+  	<div id="BOX13">#AEBD38</div>
+  </div>
+  <div class="col-md-3">
+  	<div id="BOX14">#598234</div>
+  </div>
+  </div>
+  <div class="row">
+  <h4>COLOR SCHEME 2</h4>
+  <br>
+  <div class="col-md-3">
+  	<div id="BOX21">#2E4600</div>
+  </div>
+  <div class="col-md-3">
+  	<div id="BOX22">#486B00</div>
+  </div>
+  <div class="col-md-3">
+  	<div id="BOX23">#A2C523</div>
+  </div>
+  <div class="col-md-3">
+  	<div id="BOX24">#7D4427</div>
+  </div>
+
+</div>
+<div class="row">
+  <h4>COLOR SCHEME 3</h4>
+  <br>
+  <div class="col-md-3">
+  	<div id="BOX31">#021C1E</div>
+  </div>
+  <div class="col-md-3">
+  	<div id="BOX32">#004445</div>
+  </div>
+  <div class="col-md-3">
+  	<div id="BOX33">#2C7873</div>
+  </div>
+  <div class="col-md-3">
+  	<div id="BOX34">#6FB98F</div>
+  </div>
+
+</div>
+<div class="row">
+  <h4>COLOR SCHEME 4</h4>
+  <br>
+  <div class="col-md-3">
+  	<div id="BOX41">#OF1B07</div>
+  </div>
+  <div class="col-md-3">
+  	<div id="BOX42">#FFFF</div>
+  </div>
+  <div class="col-md-3">
+  	<div id="BOX43">#5C821A</div>
+  </div>
+  <div class="col-md-3">
+  	<div id="BOX44">#C6D166</div>
+  </div>
+
+</div>
+
+
+</div>
+
+</body>
+
+</html>

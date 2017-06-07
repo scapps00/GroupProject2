@@ -4,6 +4,7 @@
 </body>
 <script src="https://cdn.auth0.com/js/lock/10.16/lock.min.js"></script>
 <script>
+var path = require("path");
 var lock = new Auth0Lock(
   'ZM0Jls3f3xqxV6tpZ9t2UiI1LHEV66G3',
   'mydia.auth0.com'
@@ -21,7 +22,7 @@ lock.on("authenticated", function(authResult) {
     localStorage.setItem('accessToken', authResult.accessToken);
     localStorage.setItem('profile', JSON.stringify(profile));
     alert("Yay!");
-    console.log(localStorage.getItem("accessToken"));
+    window.location.href = path.join(__dirname, "/callback");
   });
 });
 
