@@ -22,7 +22,7 @@ lock.on("authenticated", function(authResult) {
     localStorage.setItem('accessToken', authResult.accessToken);
     localStorage.setItem('profile', JSON.stringify(profile));
     alert("Yay!");
-    window.location.href = path.join(__dirname, "/callback");
+    console.log(profile);
   });
 });
 
