@@ -19,9 +19,8 @@ lock.on("authenticated", function(authResult) {
     }
 
     localStorage.setItem('accessToken', authResult.accessToken);
-    localStorage.setItem('profile', JSON.stringify(profile));
-    alert("Yay!");
-    console.log(profile);
+    localStorage.setItem("user_id", profile.identities[0].user_id);
+    console.log(localStorage.getItem("user_id"));
   });
 });
 
