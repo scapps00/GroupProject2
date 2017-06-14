@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body>
+	<div id="listOfChats"></div>
+	<form>
+		Name of New Chat Room
+		<input type="text" id="chatName">
+	</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyAXviW3rmNraHYDEfAqW7J101ABRkduuKQ",
+	    authDomain: "mydia-faec4.firebaseapp.com",
+	    databaseURL: "https://mydia-faec4.firebaseio.com",
+	    projectId: "mydia-faec4",
+	    storageBucket: "mydia-faec4.appspot.com",
+	    messagingSenderId: "983017248790"
+	  };
+
+	  firebase.initializeApp(config);
+
+	  var database = firebase.database();
+
+	  database.ref("chatNumList").on("value", function(snapshot1) {
+	  	var listOfChatsHTML = "";
+	  	database.ref().once("value").then(function(snapshot2) {
+	  	for (i=0; i<snapshot1.val().length; i++) {
+	  		
+	  			listOfChatsHTML += ("<a href='chat.html' target='_blank' id='link" + i + "'>" +snapshot2.val()[snapshot1.val()[i]].name + "</a><br>");
+	  	};
+	  	$("#listOfChats").html(listOfChatsHTML);
+	  	console.log(listOfChatsHTML);
+	  	for (i=0; i<snapshot1.length; i++) {
+	  		$("#link" + i).click(function() {
+	  			localStorage.setItem("chatNum", snapshot1.val()[i]);
+	  		});
+	  	};
+	  	});
+	  });
+
+
+
+</script>
