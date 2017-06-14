@@ -7,6 +7,7 @@
 	<form>
 		Name of New Chat Room
 		<input type="text" id="chatName">
+		<button id="submit">CREATE NEW CHAT</button>
 	</body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
@@ -26,22 +27,36 @@
 	  var database = firebase.database();
 
 	  database.ref("chatNumList").on("value", function(snapshot1) {
+	  	if (snapshot1.val() !== null) {
 	  	var listOfChatsHTML = "";
 	  	database.ref().once("value").then(function(snapshot2) {
-	  	for (i=0; i<snapshot1.val().length; i++) {
+	  	for (var i=0; i<snapshot1.val().length; i++) {
 	  		
-	  			listOfChatsHTML += ("<a href='chat.html' target='_blank' id='link" + i + "'>" +snapshot2.val()[snapshot1.val()[i]].name + "</a><br>");
+	  			listOfChatsHTML += ("<span id='link" + i + "'>" +snapshot2.val()[snapshot1.val()[i]].name + "</span><br>");
 	  	};
 	  	$("#listOfChats").html(listOfChatsHTML);
 	  	console.log(listOfChatsHTML);
-	  	for (i=0; i<snapshot1.length; i++) {
-	  		$("#link" + i).click(function() {
-	  			localStorage.setItem("chatNum", snapshot1.val()[i]);
+	  	for (var i=0; i<snapshot1.val().length; i++) {
+	  		console.log(snapshot1.val()[i]);
+	  		$("#link" + i).click({ value: i },function(event) {
+	  			if (localStorage.getItem("chatNum") == null) {
+	  			localStorage.setItem("chatNum", snapshot1.val()[event.data.value]);
+	  			console.log(localStorage.getItem("chatNum"));
+	  			window.open("chat.html");
+	  		}
 	  		});
 	  	};
 	  	});
+	  }
+	  else {
+	  	$("#listOfChats").html("");
+	  }
 	  });
 
+	  $("#submit").click(function() {
+	  	localStorage.setItem("newChatName", $("#chatName").val());
+	  	window.open("chat.html");
+	  })
 
 
 </script>

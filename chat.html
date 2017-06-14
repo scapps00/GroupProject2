@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body>
+	<div id="chat"></div>
+	<p>
+	<form>
+		<textarea id="chatBox"></textarea>
+		<button id="submit">Submit</button>
+	</form>
+	</body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyAXviW3rmNraHYDEfAqW7J101ABRkduuKQ",
+	    authDomain: "mydia-faec4.firebaseapp.com",
+	    databaseURL: "https://mydia-faec4.firebaseio.com",
+	    projectId: "mydia-faec4",
+	    storageBucket: "mydia-faec4.appspot.com",
+	    messagingSenderId: "983017248790"
+	  };
+
+	  firebase.initializeApp(config);
+
+	  var database = firebase.database();
+	
+
+	function setChat() { 
+		function setChatName(chatNum) {
+		database.ref(chatNum).update({
+			  	name: localStorage.getItem("newChatName")
+			  });
+	};
+		var chatNumListforUnload = [];
+		database.ref("chatNumList").on("value", function(snapshot) {
+			chatNumListforUnload = snapshot.val();
+		});
+	if (localStorage.getItem("chatNum") == null) {
+	  localStorage.setItem("chatNum", Math.floor(Math.random() * 100));
+	
+	  var chatNum = localStorage.getItem("chatNum");
+
+	  setChatName(chatNum);
+
+	  database.ref("chatNumList").once("value").then(function(snapshot) {
+	  	var chatNumList = snapshot.val();
+	  	if (chatNumList == null) {
+			  	chatNumList = [chatNum];
+			  }
+		  	else if (chatNumList.indexOf(chatNum) == -1) {
+			  	chatNumList.push(chatNum);
+			  } else {
+			  	setChat();
+			  	return;
+			  }
+			
+
+	  	database.ref().update({
+		  	chatNumList: chatNumList
+		  });
+
+		  database.ref(chatNum).update({
+		  	chat: "Start Chatting! <br>"
+		  });
+		  });
+	 }
+	else {
+		var chatNum = localStorage.getItem("chatNum");
+	}
+
+	function addChat(chatNum) {
+			database.ref(chatNum).update({
+				chat: $("#chat").html() + localStorage.getItem("user") + ": " + $("#chatBox").val() + "<br>"
+			});
+	};
+
+	function updateChat(chatNum, database) {
+		database.ref(chatNum).on("value", function(snapshot) {
+				$("#chat").html(snapshot.val().chat);
+		});
+	};
+
+
+		 
+
+
+
+		  updateChat(chatNum, database);
+
+		  $("#submit").click({chatNum: chatNum},function(event) {
+		  	event.preventDefault();
+		  	addChat(event.data.chatNum);
+		  });
+
+		  
+
+
+
+	 
+
+	  window.onunload = function() {
+	  		localStorage.removeItem("chatNum");
+		  	database.ref(chatNum).remove();
+		  	var index = chatNumListforUnload.indexOf(chatNum);
+		  	chatNumListforUnload.splice(index, 1);
+		  	database.ref().update({
+			  	chatNumList: chatNumListforUnload
+			  });
+
+
+	  };
+	  
+	};
+
+
+	  setChat();
+
+
+	</script>
+</html>
