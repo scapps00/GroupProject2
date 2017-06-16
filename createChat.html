@@ -60,7 +60,7 @@
 	  	database.ref().once("value").then(function(snapshot2) {
 	  	for (var i=0; i<snapshot1.val().length; i++) {
 	  		
-	  			listOfChatsHTML += ("<span id='link" + i + "'>" +snapshot2.val()[snapshot1.val()[i]].name + "</span><br>");
+	  			listOfChatsHTML += ("<span id='link" + i + "'>" + snapshot2.val()[snapshot1.val()[i]].name + " -- " + snapshot2.val()[snapshot1.val()[i]].numUsers + " user(s)</span><br>");
 	  	};
 	  	$("#listOfChats").html(listOfChatsHTML);
 	  	console.log(listOfChatsHTML);
@@ -83,6 +83,7 @@
 
 	  $("#submit").click(function() {
 	  	localStorage.setItem("newChatName", $("#chatName").val());
+	  	localStorage.removeItem("chatNum");
 	  	window.open("chat.html");
 	  });
 
