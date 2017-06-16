@@ -1,15 +1,41 @@
 <!DOCTYPE html>
 <html>
 	<head>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	</head>
 	<body>
+	<div id="title">Mydia Chat Rooms</div>
+	<br>
+	<div id="inst">Click on a chat room to join!</div>
+	<br>
 	<div id="listOfChats"></div>
+	<br>
 	<form>
-		Name of New Chat Room
+		Name of New Chat Room<br>
 		<input type="text" id="chatName">
-		<button id="submit">CREATE NEW CHAT</button>
+		<button id="submit">Create New Chat</button>
 	</body>
 	<style>
+		body {
+			background-color: #2C7873;
+			color: #6FB98F;
+			font-size: 20px;
+			font-family: 'Roboto', sans-serif;
+		}
+
+		#title {
+			padding: 15px;
+			margin: -10px;
+			background-color: #6FB98F;
+			font-size: 30px;
+			color: #2b524f;
+		}
+
+		input {
+			height: 20px;
+			color: black;
+			width: 200px;
+		}
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
@@ -57,6 +83,7 @@
 
 	  $("#submit").click(function() {
 	  	localStorage.setItem("newChatName", $("#chatName").val());
+	  	window.open("chat.html");
 	  });
 
 

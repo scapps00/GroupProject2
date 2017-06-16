@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 	</head>
 	<body>
+	<div id="title"></div>
+	<br>
 	<div id="chat"></div>
-	<p>
+	<br>
 	<form>
 		<textarea id="chatBox"></textarea>
 		<button id="submit">Submit</button>
@@ -15,6 +18,29 @@
 		<source src="chatSound.mp3" type="audio/mpeg">
 	</audio>
 	</body>
+	<style>
+			body {
+			background-color: #2C7873;
+			color: #6FB98F;
+			font-size: 20px;
+			font-family: 'Roboto', sans-serif;
+		}
+
+		#title {
+			padding: 15px;
+			margin: -10px;
+			background-color: #6FB98F;
+			font-size: 30px;
+			color: #2b524f;
+		}
+
+		textarea {
+			height: 100px;
+			width: 250px;
+			font-family: 'Roboto', sans-serif;
+			font-size: 20px;
+		}
+	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
 	<script>
@@ -75,6 +101,10 @@
 	else {
 		var chatNum = localStorage.getItem("chatNum");
 	}
+
+	database.ref(chatNum).once("value").then(function(snapshot) {
+		$("#title").text(snapshot.val().name);
+	});
 
 	function addChat(chatNum) {
 			database.ref(chatNum).update({
