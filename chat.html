@@ -9,6 +9,11 @@
 		<textarea id="chatBox"></textarea>
 		<button id="submit">Submit</button>
 	</form>
+	<br>
+	<button id="mute">Turn Off Chat Sound</button>
+	<audio id="chatSound">
+		<source src="chatSound.mp3" type="audio/mpeg">
+	</audio>
 	</body>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
@@ -75,11 +80,13 @@
 			database.ref(chatNum).update({
 				chat: $("#chat").html() + localStorage.getItem("user") + ": " + $("#chatBox").val() + "<br>"
 			});
+			$("#chatBox").val("");
 	};
 
 	function updateChat(chatNum, database) {
 		database.ref(chatNum).on("value", function(snapshot) {
 				$("#chat").html(snapshot.val().chat);
+				document.getElementById("chatSound").play();
 		});
 	};
 
@@ -93,6 +100,13 @@
 		  $("#submit").click({chatNum: chatNum},function(event) {
 		  	event.preventDefault();
 		  	addChat(event.data.chatNum);
+		  });
+
+		  $(document).keypress({chatNum: chatNum}, function(event) {
+			if (event.which == 13) {
+				event.preventDefault();
+				addChat(event.data.chatNum);
+			}
 		  });
 
 		  
@@ -117,7 +131,21 @@
 
 
 	  setChat();
+	  function mute() {
+		  $("#mute").click(function() {
+		  	$("#mute").text("Turn On Chat Sounds");
+		  	$("#mute").attr("id", "unmute");
+		  	$("#chatSound").attr("id", "muted");
+		  	$("#unmute").click(function() {
+			  	$("#unmute").text("Turn Off Chat Sounds");
+			  	$("#unmute").attr("id", "mute");
+			  	$("#muted").attr("id", "chatSound");
+			  	mute();
+			  });
+		  });
+	}	
 
+	mute();
 
 	</script>
 </html>
