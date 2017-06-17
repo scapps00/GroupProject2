@@ -56,8 +56,8 @@
 
 	  database.ref("chatNumList").on("value", function(snapshot1) {
 	  	if (snapshot1.val() !== null) {
+	  	database.ref().on("value", function(snapshot2) {
 	  	var listOfChatsHTML = "";
-	  	database.ref().once("value").then(function(snapshot2) {
 	  	for (var i=0; i<snapshot1.val().length; i++) {
 	  		
 	  			listOfChatsHTML += ("<span id='link" + i + "'>" + snapshot2.val()[snapshot1.val()[i]].name + " -- " + snapshot2.val()[snapshot1.val()[i]].numUsers + " user(s)</span><br>");
